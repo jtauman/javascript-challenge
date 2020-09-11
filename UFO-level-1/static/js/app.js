@@ -22,18 +22,6 @@ function getData(data) {
 };
 
 getData(tableData);
-//loop through the data and get each ufoData object
-// data.forEach((ufoData) => {
-//     //append a row to tbody for each ufoData object
-//     var row = tbody.append("tr");
-//     //for each ufoData object get the key value pair
-//     Object.entries(ufoData).forEach(([key, value]) => {
-//         //append data cells for each row as table data
-//         var cell = row.append("td");
-//         //put in the ufoData object values into cells
-//         cell.text(value);
-//     });
-// });
 
 
 //Search and filtering table on date/time
@@ -68,23 +56,18 @@ function runEnter() {
 
     console.log(filteredInput);
 
-    
+    //clear the table
     d3.select("tbody").selectAll("tr").remove();
-    getData(filteredInput);
-    
-//     //return the filtered values in the table
-//     filteredInput.forEach((ufoData) => {
-//         //append a row to tbody for each ufoData object
-//         var row = tbody.append("tr");
-//         //for each ufoData object get the key value pair
-//         Object.entries(ufoData).forEach(([key, value]) => {
-//             //append data cells for each row as table data
-//             var cell = row.append("td");
-//             //put in the ufoData object values into cells
-//             cell.text(value);
-//         });
-//     });
 
+
+    if (Object.keys(filteredInput).length === 0) {
+        var text = d3.select("h3").text("Unfortunately your search did not return any data. Please select a date from 1/1/2010 - 1/13/2010.")
+    }
+    else { 
+    //run filteredInput through the getData function
+    getData(filteredInput);
+    d3.select("h3").text("");
+    }   
 };
 
 
