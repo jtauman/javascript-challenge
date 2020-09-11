@@ -5,18 +5,35 @@ var tableData = data;
 //Reference table body
 var tbody = d3.select("tbody");
 
-//loop through the data and get each ufoData object
-data.forEach((ufoData) => {
-    //append a row to tbody for each ufoData object
-    var row = tbody.append("tr");
-    //for each ufoData object get the key value pair
-    Object.entries(ufoData).forEach(([key, value]) => {
-        //append data cells for each row as table data
-        var cell = row.append("td");
-        //put in the ufoData object values into cells
-        cell.text(value);
+//function to loop through the data, get each UFO data object and add to table
+function getData(data) {
+    //loop through the data and get each ufoData object
+    data.forEach((ufoData) => {
+        //append a row to tbody for each ufoData object
+        var row = tbody.append("tr");
+        //for each ufoData object get the key value pair
+        Object.entries(ufoData).forEach(([key, value]) => {
+           //append data cells for each row as table data
+            var cell = row.append("td");
+            //put in the ufoData object values into cells
+            cell.text(value); 
+        });
     });
-});
+};
+
+getData(tableData);
+//loop through the data and get each ufoData object
+// data.forEach((ufoData) => {
+//     //append a row to tbody for each ufoData object
+//     var row = tbody.append("tr");
+//     //for each ufoData object get the key value pair
+//     Object.entries(ufoData).forEach(([key, value]) => {
+//         //append data cells for each row as table data
+//         var cell = row.append("td");
+//         //put in the ufoData object values into cells
+//         cell.text(value);
+//     });
+// });
 
 
 //Search and filtering table on date/time
@@ -33,7 +50,7 @@ form.on("submit",runEnter);
 
 // Complete the event handler function for the form
 function runEnter() {
-
+    
     // Prevent the page from refreshing
     d3.event.preventDefault();
 
@@ -53,20 +70,23 @@ function runEnter() {
 
     
     d3.select("tbody").selectAll("tr").remove();
-    //return the filtered values in the table
-    filteredInput.forEach((ufoData) => {
-        //append a row to tbody for each ufoData object
-        var row = tbody.append("tr");
-        //for each ufoData object get the key value pair
-        Object.entries(ufoData).forEach(([key, value]) => {
-            //append data cells for each row as table data
-            var cell = row.append("td");
-            //put in the ufoData object values into cells
-            cell.text(value);
-        });
-    });
-
-
+    getData(filteredInput);
+    
+//     //return the filtered values in the table
+//     filteredInput.forEach((ufoData) => {
+//         //append a row to tbody for each ufoData object
+//         var row = tbody.append("tr");
+//         //for each ufoData object get the key value pair
+//         Object.entries(ufoData).forEach(([key, value]) => {
+//             //append data cells for each row as table data
+//             var cell = row.append("td");
+//             //put in the ufoData object values into cells
+//             cell.text(value);
+//         });
+//     });
 
 };
+
+
+
 
