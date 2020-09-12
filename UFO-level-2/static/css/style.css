@@ -186,6 +186,7 @@ select {
     content: attr(data-th);
   }
 
+
   .hero h1 {
     animation: smaller-title 1.2s forwards linear;
   }
